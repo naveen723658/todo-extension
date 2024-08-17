@@ -1,0 +1,118 @@
+body {
+  min-width: 500px;
+  max-width: 500px;
+  height: auto;
+  background: #000000;
+}
+*::-webkit-scrollbar {
+  display: none;
+}
+.app {
+  box-shadow: 0 0 10px rgb(167 139 139);
+  margin: 2rem;
+  padding: 2rem;
+  background-color: #101112;
+}
+#heading {
+  color: #fff;
+  text-align: center;
+  font-size: 2rem;
+  font-family: "Rum Raisin", cursive;
+}
+
+input[type="text"] {
+  padding: 0.5rem;
+  border-radius: 0.4rem;
+  border: 1px solid #ccc;
+}
+
+input[type="text"]:focus {
+  outline: none;
+}
+
+.search {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+.search button {
+  padding: 0.5rem 0.85rem;
+  border: none;
+  background: #10972f;
+  border-radius: 50%;
+  cursor: pointer;
+  font-family: "rum raisin", cursive;
+}
+.Todo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 1rem;
+  width: 100%;
+  margin-top: 2rem;
+}
+.Todo ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  width: 68%;
+  display: flex;
+  min-height: 200px;
+  max-height: 200px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  flex-direction: column;
+  gap: 1rem;
+  align-items: flex-start;
+}
+.Todo ul li {
+  box-sizing: border-box;
+  padding: 0 0.3rem;
+  height: 2.5rem;
+  width: 100%;
+  gap: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.delete {
+  padding: 0.5rem 0.85rem;
+  border: none;
+  background: #c0eef2;
+  border-radius: 50%;
+  cursor: pointer;
+  font-family: "rum raisin", cursive;
+}
+.content {
+  display: flex;
+  align-items: center;
+  background: white;
+  max-width: 185px;
+  width: 100%;
+  border-radius: 0.4rem;
+  height: 2.2rem;
+}
+.content p {
+  margin-left: 1rem;
+  word-wrap: break-word;
+  width: 100%;
+}
+
+.content p a {
+  text-decoration: none;
+  color: #000;
+}
+
+.content input[type="checkbox"] {
+  display: none;
+  background-color: #eee;
+}
+.content input[type="checkbox"]:checked .content p {
+  text-decoration: line-through;
+  color: white;
+}
+.content input[type="checkbox"]:checked .content p a {
+  text-decoration: line-through;
+  color: white;
+}

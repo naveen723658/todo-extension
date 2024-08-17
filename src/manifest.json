@@ -1,0 +1,53 @@
+{
+  "name": "ToDo",
+  "icons": {
+    "16": "public/icon-16.png",
+    "48": "public/icon-48.png",
+    "128": "public/icon-48.png"
+  },
+  "version": "1.0",
+  "description": "Todo App in react",
+  "permissions": [
+    "activeTab",
+    "storage",
+    "notifications",
+    "contextMenus",
+    "scripting",
+    "tabs",
+    "nativeMessaging"
+  ],
+  "action": {
+    "default_popup": "index.html",
+    "default_icon": "public/icon-48.png"
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://www.youtube.com/"],
+      "js": ["content.js"],
+      "run_at": "document_end"
+    }
+  ],
+  "host_permissions": ["https://www.youtube.com/", "https://www.knaveen.me/"],
+  "manifest_version": 3,
+  "commands": {
+    "AddTodo": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+K",
+        "mac": "MacCtrl+Shift+K"
+      },
+      "description": "Add a new todo list"
+    }
+  },
+  "content_security_policy": {
+    "extension_pages": "script-src 'self' 'wasm-unsafe-eval'; object-src 'self';"
+  },
+  "web_accessible_resources": [
+    {
+      "resources": ["inject.js"],
+      "matches": ["https://*/*"]
+    }
+  ]
+}
