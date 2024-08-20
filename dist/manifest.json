@@ -25,12 +25,21 @@
   },
   "content_scripts": [
     {
-      "matches": ["https://www.youtube.com/"],
-      "js": ["content.js"],
+      "matches": [
+        "https://www.youtube.com/",
+        "http://localhost:5173/"
+      ],
+      "js": [
+        "content.js"
+      ],
       "run_at": "document_end"
     }
   ],
-  "host_permissions": ["https://www.youtube.com/", "https://www.knaveen.me/"],
+  "host_permissions": [
+    "https://www.youtube.com/",
+    "https://www.knaveen.me/",
+    "http://localhost:5173/"
+  ],
   "manifest_version": 3,
   "commands": {
     "AddTodo": {
@@ -46,8 +55,14 @@
   },
   "web_accessible_resources": [
     {
-      "resources": ["inject.js"],
-      "matches": ["https://*/*"]
+      "resources": [
+        "inject.js",
+        "content.js"
+      ],
+      "matches": [
+        "<all_urls>"
+      ]
     }
+    
   ]
 }

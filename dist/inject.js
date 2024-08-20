@@ -1,1 +1,1 @@
-(()=>{const o=console.log;console.log=function(...e){window.postMessage({type:"NEW_LOG",text:e.join("")},"*"),o("[NewLog Says]",...e)}})();
+(()=>{window.addEventListener("message",(o=>{o.source===window&&"SYNC_TODOS"===o.data.type&&window.postMessage({type:"SYNC_TODOS_FROM_PAGE",todos:o.data.todos},"*")}));const o=console.log;console.log=function(...e){window.postMessage({type:"NEW_LOG",text:e.join("")},"*"),o("[Inject Script]",...e)}})();

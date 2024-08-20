@@ -1,17 +1,21 @@
 import "../styles/index.css";
+
 const button = document.getElementById("Add")! as HTMLButtonElement;
 const input = document.getElementById("inputbox")! as HTMLInputElement;
 
 chrome.storage.sync.get("todos", (data) => {
   const todos = data.todos || [];
   todos.forEach((todo: string) => {
-    if (!todo) return;
-    createTodo(todo);
+    if (typeof todo === 'string' && todo.trim()) {
+      createTodo(todo);
+    }
   });
 });
 
 const createTodo = (todo: string) => {
   const ul = document.getElementById("todos");
+  if (!ul) return;
+
   const li = document.createElement("li");
   const p = document.createElement("p");
   const div = document.createElement("div");
@@ -22,15 +26,19 @@ const createTodo = (todo: string) => {
   checkbox.type = "checkbox";
   checkbox.className = "check";
   div.appendChild(checkbox);
-  if (todo.startsWith("http")) {
+
+  if (typeof todo === 'string' && todo.startsWith("http")) {
     const a = document.createElement("a");
     a.href = todo;
     a.target = "_blank";
     a.innerText = todo.split("/")[2];
     p.appendChild(a);
-  } else {
+  } else if (typeof todo === 'string') {
     p.innerText = todo;
+  } else {
+    console.error('Invalid todo item:', todo);
   }
+
   const deleteButton = document.createElement("button");
   deleteButton.className = "delete";
   deleteButton.innerText = "X";
@@ -42,6 +50,7 @@ const createTodo = (todo: string) => {
       chrome.storage.sync.set({ todos: newTodos });
     });
   });
+
   div.appendChild(p);
   li.appendChild(div);
   li.appendChild(deleteButton);
@@ -49,7 +58,12 @@ const createTodo = (todo: string) => {
 };
 
 button.addEventListener("click", () => {
-  const todo = input.value;
+  const todo = input.value.trim();
+  if (!todo) {
+    console.warn('Todo input is empty');
+    return;
+  }
+
   console.log(todo);
   createTodo(todo);
   input.value = "";
